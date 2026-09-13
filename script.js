@@ -82,6 +82,8 @@
   const navLinks = document.querySelectorAll("[data-nav-link]");
   const sectionTargets = {
     hero: "hero",
+    capabilities: "hero",
+    process: "hero",
     work: "work",
     ecommerce: "work",
     corporate: "work",

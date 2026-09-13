@@ -620,13 +620,123 @@ body {
 }
 
 /* ==========================================================================
+   What I Do / How I Work
+   ========================================================================== */
+
+.capabilities {
+  padding-top: clamp(100px, 14vw, 160px);
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, var(--bg-soft) 0%, var(--bg) 70%);
+}
+
+.process {
+  border-top: 1px solid var(--line-soft);
+  background: var(--bg-soft);
+}
+
+.capabilities__head,
+.process__head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+
+.capabilities__title,
+.process__title {
+  margin: 0;
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.capabilities__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.capability {
+  padding: 28px 24px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+
+.capability__num {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.capability h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.capability p {
+  margin: 0;
+  color: var(--ink-dim);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.process__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.process__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  padding: 28px 0;
+}
+
+.process__step + .process__step {
+  border-top: 1px solid var(--line-soft);
+}
+
+.process__num {
+  flex-shrink: 0;
+  width: 32px;
+  padding-top: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.process__step h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.process__step p {
+  margin: 0;
+  max-width: 520px;
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
    Work intro
    ========================================================================== */
 
 .work-intro {
   text-align: center;
-  padding-top: clamp(100px, 14vw, 160px);
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, var(--bg-soft) 0%, var(--bg) 70%);
+  border-top: 1px solid var(--line-soft);
+  background: var(--bg);
 }
 
 .work-intro__title {
@@ -694,6 +804,14 @@ body {
   font-weight: 500;
   font-style: italic;
   letter-spacing: -0.01em;
+}
+
+.showcase__rationale {
+  margin: 14px 0 0;
+  max-width: 480px;
+  color: var(--ink-dim);
+  font-size: 0.98rem;
+  line-height: 1.6;
 }
 
 /* ==========================================================================
@@ -1589,6 +1707,10 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .capabilities__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .brand__mark {
     max-width: 280px;
     margin: 0 auto;
@@ -1614,6 +1736,14 @@ body {
   .showcase__head {
     flex-direction: column;
     gap: 10px;
+  }
+
+  .capabilities__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process__step {
+    gap: 16px;
   }
 
   .product-grid,
