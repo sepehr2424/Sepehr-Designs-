@@ -7,10 +7,35 @@
   <meta name="description" content="Sepehr Designs — premium web design and digital design studio." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <header class="nav" id="siteNav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__brand">Sepehr<span>.</span></a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#hero" class="nav__link" data-nav-link data-target="hero">Home</a>
+        <a href="#work" class="nav__link" data-nav-link data-target="work">Work</a>
+        <a href="#contact" class="nav__link" data-nav-link data-target="contact">Contact</a>
+      </nav>
+
+      <a href="mailto:hello@sepehrdesigns.com?subject=Booking%20a%20call&body=Hi%20Sepehr%2C%0A%0AI%27d%20like%20to%20book%20a%20call%20to%20discuss%20a%20project." class="nav__cta">Book a Call</a>
+
+      <button class="nav__toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="nav__menu" id="navMenu">
+      <a href="#hero" data-nav-link data-target="hero">Home</a>
+      <a href="#work" data-nav-link data-target="work">Work</a>
+      <a href="#contact" data-nav-link data-target="contact">Contact</a>
+      <a href="mailto:hello@sepehrdesigns.com?subject=Booking%20a%20call" class="nav__menu-cta">Book a Call</a>
+    </div>
+  </header>
 
   <section class="hero" id="hero">
     <div class="hero__bg" aria-hidden="true">
@@ -40,6 +65,344 @@
       </a>
     </div>
   </section>
+
+  <main id="work">
+
+    <div class="work-intro section">
+      <div class="section__inner reveal">
+        <p class="tag">Selected Work</p>
+        <h2 class="work-intro__title">Seven industries.<br>One design language.</h2>
+        <p class="work-intro__sub">
+          Concept projects demonstrating how the same design discipline adapts
+          across categories — not real client work, but a proof of range.
+        </p>
+      </div>
+    </div>
+
+    <!-- ============================= E-COMMERCE ============================= -->
+    <section class="showcase showcase--ecommerce" id="ecommerce" aria-labelledby="ecommerce-title">
+      <div class="section__inner">
+        <div class="showcase__head reveal">
+          <span class="showcase__index">01</span>
+          <div>
+            <p class="showcase__eyebrow">E-Commerce — Concept</p>
+            <h3 class="showcase__title" id="ecommerce-title">Storefronts built to sell.</h3>
+          </div>
+        </div>
+
+        <div class="product-grid reveal-group">
+          <article class="product-card reveal">
+            <div class="product-card__media product-card__media--a">
+              <span class="product-card__tag">New</span>
+            </div>
+            <div class="product-card__info">
+              <h4>Aria Lounge Chair</h4>
+              <p class="product-card__price">$420.00</p>
+              <button class="product-card__cta" type="button" data-add-to-bag>Add to Bag</button>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-card__media product-card__media--b">
+              <span class="product-card__tag">Limited</span>
+            </div>
+            <div class="product-card__info">
+              <h4>Nord Ceramic Vase</h4>
+              <p class="product-card__price">$96.00</p>
+              <button class="product-card__cta" type="button" data-add-to-bag>Add to Bag</button>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-card__media product-card__media--c">
+              <span class="product-card__tag">Bestseller</span>
+            </div>
+            <div class="product-card__info">
+              <h4>Halo Table Lamp</h4>
+              <p class="product-card__price">$210.00</p>
+              <button class="product-card__cta" type="button" data-add-to-bag>Add to Bag</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= CORPORATE ============================= -->
+    <section class="showcase showcase--corporate" id="corporate" aria-labelledby="corporate-title">
+      <div class="section__inner corporate__grid">
+        <div class="showcase__head reveal">
+          <span class="showcase__index">02</span>
+          <div>
+            <p class="showcase__eyebrow">Business &amp; Corporate — Concept</p>
+            <h3 class="showcase__title" id="corporate-title">Clarity you can trust.</h3>
+            <p class="corporate__copy">
+              A visual system built on structure and restraint — where every
+              heading, column and margin earns its place.
+            </p>
+            <ul class="corporate__pillars">
+              <li><span class="corporate__pillar-icon" aria-hidden="true"></span>Clarity</li>
+              <li><span class="corporate__pillar-icon" aria-hidden="true"></span>Structure</li>
+              <li><span class="corporate__pillar-icon" aria-hidden="true"></span>Trust</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="browser-mock reveal" aria-hidden="true">
+          <div class="browser-mock__bar">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="browser-mock__body">
+            <div class="browser-mock__nav">
+              <div class="browser-mock__logo"></div>
+              <div class="browser-mock__navlinks">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="browser-mock__hero">
+              <div class="browser-mock__line browser-mock__line--lg"></div>
+              <div class="browser-mock__line browser-mock__line--md"></div>
+              <div class="browser-mock__btn"></div>
+            </div>
+            <div class="browser-mock__cols">
+              <div></div><div></div><div></div>
+            </div>
+          </div>
+          <p class="browser-mock__caption">Corporate Homepage — Concept</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= HOSPITALITY ============================= -->
+    <section class="showcase showcase--hospitality" id="hospitality" aria-labelledby="hospitality-title">
+      <div class="section__inner">
+        <div class="showcase__head reveal">
+          <span class="showcase__index">03</span>
+          <div>
+            <p class="showcase__eyebrow">Restaurant &amp; Hospitality — Concept</p>
+            <h3 class="showcase__title showcase__title--serif" id="hospitality-title">An evening, designed.</h3>
+          </div>
+        </div>
+
+        <div class="hospitality__layout">
+          <div class="hospitality__plate reveal" aria-hidden="true"></div>
+
+          <div class="menu reveal">
+            <p class="menu__eyebrow">Tasting Menu — Concept</p>
+            <ul class="menu__list">
+              <li><span>Charred Heirloom Tomato</span><i></i><span>18</span></li>
+              <li><span>Saffron Risotto, Burnt Butter</span><i></i><span>26</span></li>
+              <li><span>Slow Roasted Duck Breast</span><i></i><span>38</span></li>
+              <li><span>Dark Chocolate &amp; Olive Oil</span><i></i><span>14</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= REAL ESTATE ============================= -->
+    <section class="showcase showcase--realestate" id="real-estate" aria-labelledby="realestate-title">
+      <div class="section__inner">
+        <div class="showcase__head reveal">
+          <span class="showcase__index">04</span>
+          <div>
+            <p class="showcase__eyebrow">Real Estate — Concept</p>
+            <h3 class="showcase__title" id="realestate-title">Properties, presented properly.</h3>
+          </div>
+        </div>
+
+        <div class="property-filters reveal" role="group" aria-label="Filter properties by category">
+          <button type="button" class="property-filters__btn is-active" data-filter="all">All</button>
+          <button type="button" class="property-filters__btn" data-filter="residential">Residential</button>
+          <button type="button" class="property-filters__btn" data-filter="coastal">Coastal</button>
+          <button type="button" class="property-filters__btn" data-filter="urban">Urban</button>
+        </div>
+
+        <div class="property-grid reveal-group">
+          <article class="property-card reveal" data-category="residential">
+            <div class="property-card__media property-card__media--a">
+              <span class="property-card__price">$1.85M</span>
+            </div>
+            <div class="property-card__info">
+              <div>
+                <h4>The Ridgeline House</h4>
+                <p class="property-card__loc">Residential · 4 bed</p>
+              </div>
+              <button class="property-card__toggle" type="button" aria-expanded="false" aria-controls="details-ridgeline">View Details</button>
+            </div>
+            <div class="property-card__details" id="details-ridgeline">
+              <p>
+                A quiet hillside layout concept — wide glazing, low-slung rooflines
+                and a material palette kept deliberately restrained.
+              </p>
+            </div>
+          </article>
+
+          <article class="property-card reveal" data-category="coastal">
+            <div class="property-card__media property-card__media--b">
+              <span class="property-card__price">$3.2M</span>
+            </div>
+            <div class="property-card__info">
+              <div>
+                <h4>Harbor Point Villa</h4>
+                <p class="property-card__loc">Coastal · 5 bed</p>
+              </div>
+              <button class="property-card__toggle" type="button" aria-expanded="false" aria-controls="details-harbor">View Details</button>
+            </div>
+            <div class="property-card__details" id="details-harbor">
+              <p>
+                Full-height openings framing the waterline, with a layout concept
+                that treats the view as the primary material.
+              </p>
+            </div>
+          </article>
+
+          <article class="property-card reveal" data-category="urban">
+            <div class="property-card__media property-card__media--c">
+              <span class="property-card__price">$920K</span>
+            </div>
+            <div class="property-card__info">
+              <div>
+                <h4>Meridian Loft</h4>
+                <p class="property-card__loc">Urban · 2 bed</p>
+              </div>
+              <button class="property-card__toggle" type="button" aria-expanded="false" aria-controls="details-meridian">View Details</button>
+            </div>
+            <div class="property-card__details" id="details-meridian">
+              <p>
+                A concept for compact city living — exposed structure, dark
+                joinery and a single uninterrupted living volume.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= CREATIVE AGENCY ============================= -->
+    <section class="showcase showcase--agency" id="agency" aria-labelledby="agency-title">
+      <div class="agency__marquee" aria-hidden="true">
+        <div class="agency__marquee-track">
+          <span>DESIGN</span><span>MOTION</span><span>STRATEGY</span><span>BRAND</span>
+          <span>DESIGN</span><span>MOTION</span><span>STRATEGY</span><span>BRAND</span>
+        </div>
+      </div>
+
+      <div class="section__inner">
+        <div class="showcase__head reveal">
+          <span class="showcase__index">05</span>
+          <div>
+            <p class="showcase__eyebrow">Creative &amp; Agency — Concept</p>
+            <h3 class="showcase__title" id="agency-title">Rules, broken on purpose.</h3>
+          </div>
+        </div>
+
+        <div class="agency__grid">
+          <article class="agency-card agency-card--one reveal">
+            <span class="agency-card__num">A</span>
+            <h4>Art-directed storytelling</h4>
+            <p>Asymmetry and scale used deliberately, not decoratively.</p>
+          </article>
+          <article class="agency-card agency-card--two reveal">
+            <span class="agency-card__num">B</span>
+            <h4>Motion as a material</h4>
+            <p>Interactions that reveal intent, not just movement.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= PERSONAL BRAND ============================= -->
+    <section class="showcase showcase--brand" id="personal-brand" aria-labelledby="brand-title">
+      <div class="section__inner brand__layout">
+        <div class="brand__mark reveal" aria-hidden="true">
+          <div class="brand__mark-ring"></div>
+        </div>
+
+        <div class="brand__copy reveal">
+          <span class="showcase__index">06</span>
+          <p class="showcase__eyebrow">Personal Brand &amp; Creator — Concept</p>
+          <blockquote class="brand__quote">
+            "A personal site should feel like a conversation, not a résumé."
+          </blockquote>
+          <p class="brand__text">
+            Editorial pacing, a confident point of view, and just enough
+            restraint to let the person — not the template — come through.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= TECH / SAAS ============================= -->
+    <section class="showcase showcase--tech" id="tech" aria-labelledby="tech-title">
+      <div class="section__inner">
+        <div class="showcase__head reveal">
+          <span class="showcase__index">07</span>
+          <div>
+            <p class="showcase__eyebrow">Technology &amp; SaaS — Concept</p>
+            <h3 class="showcase__title" id="tech-title">Interfaces engineered for clarity.</h3>
+          </div>
+        </div>
+
+        <div class="app-mock reveal">
+          <div class="app-mock__glow" aria-hidden="true"></div>
+          <div class="app-mock__bar">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="app-mock__body">
+            <aside class="app-mock__side">
+              <div class="app-mock__side-item app-mock__side-item--active"></div>
+              <div class="app-mock__side-item"></div>
+              <div class="app-mock__side-item"></div>
+              <div class="app-mock__side-item"></div>
+            </aside>
+            <div class="app-mock__main">
+              <div class="app-mock__stat"></div>
+              <div class="app-mock__stat"></div>
+              <div class="app-mock__chart">
+                <i style="--h:38%"></i><i style="--h:62%"></i><i style="--h:44%"></i>
+                <i style="--h:80%"></i><i style="--h:56%"></i><i style="--h:68%"></i>
+                <i style="--h:30%"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================= CONTACT ============================= -->
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="section__inner contact__inner reveal">
+      <p class="tag">Start a Project</p>
+      <h2 class="contact__title" id="contact-title">Have a project in mind?</h2>
+      <p class="contact__sub">Tell me what you're building — I'll tell you how it should feel.</p>
+      <a href="mailto:hello@sepehrdesigns.com?subject=Booking%20a%20call&body=Hi%20Sepehr%2C%0A%0AI%27d%20like%20to%20book%20a%20call%20to%20discuss%20a%20project." class="cta cta--contact">
+        <span class="cta__glow" aria-hidden="true"></span>
+        <span class="cta__label">Book a Call</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="section__inner footer__inner">
+      <div class="footer__brand">
+        <a href="#hero" class="footer__logo">Sepehr<span>.</span></a>
+        <p class="footer__tagline">Web &amp; digital design studio.</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#hero">Home</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="mailto:hello@sepehrdesigns.com" class="footer__email">hello@sepehrdesigns.com</a>
+    </div>
+    <div class="footer__bottom">
+      <p class="section__inner">© 2026 Sepehr Designs. Concept portfolio — projects shown are design demonstrations, not client work.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
