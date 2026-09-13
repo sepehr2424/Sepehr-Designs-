@@ -517,13 +517,18 @@ body {
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
-  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+  transition: transform 150ms var(--ease), box-shadow 150ms var(--ease);
   box-shadow: 0 6px 18px -8px rgba(255, 255, 255, 0.2);
 }
 
 .nav__cta:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 24px -8px rgba(180, 190, 255, 0.35);
+}
+
+.nav__cta:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 100ms;
 }
 
 .nav__toggle {
@@ -538,6 +543,11 @@ body {
   background: transparent;
   cursor: pointer;
   padding: 0;
+  transition: transform 100ms var(--ease);
+}
+
+.nav__toggle:active {
+  transform: scale(0.9);
 }
 
 .nav__toggle span {
@@ -787,13 +797,17 @@ body {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease);
+  transition: background 150ms var(--ease), color 150ms var(--ease), border-color 150ms var(--ease), transform 100ms var(--ease);
 }
 
 .product-card__cta:hover {
   background: var(--ink);
   color: #0a0a0b;
   border-color: var(--ink);
+}
+
+.product-card__cta:active {
+  transform: scale(0.97);
 }
 
 .product-card__cta.is-added {
@@ -1047,12 +1061,16 @@ body {
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease);
+  transition: background 150ms var(--ease), color 150ms var(--ease), border-color 150ms var(--ease), transform 100ms var(--ease);
 }
 
 .property-filters__btn:hover {
   color: var(--ink);
   border-color: rgba(255, 255, 255, 0.25);
+}
+
+.property-filters__btn:active {
+  transform: scale(0.96);
 }
 
 .property-filters__btn.is-active {
@@ -1138,12 +1156,16 @@ body {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: color 200ms var(--ease), border-color 200ms var(--ease);
+  transition: color 150ms var(--ease), border-color 150ms var(--ease), transform 100ms var(--ease);
 }
 
 .property-card__toggle:hover {
   color: var(--ink);
   border-color: rgba(255, 255, 255, 0.25);
+}
+
+.property-card__toggle:active {
+  transform: scale(0.96);
 }
 
 .property-card__details {
@@ -1647,5 +1669,47 @@ body {
   .agency-card,
   .property-card__details {
     transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   Reduced transparency / increased contrast — translucent nav material
+   ========================================================================== */
+
+@media (prefers-reduced-transparency: reduce) {
+  .nav.is-scrolled {
+    background: #050506;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nav__menu {
+    background: #050506;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .property-card__price {
+    background: #050506;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .nav.is-scrolled,
+  .nav__menu {
+    background: #000000;
+    border-bottom-color: rgba(255, 255, 255, 0.35);
+  }
+
+  .nav__link,
+  .footer__links a {
+    color: var(--ink);
+  }
+
+  .property-filters__btn,
+  .property-card__toggle,
+  .product-card__cta {
+    border-color: rgba(255, 255, 255, 0.4);
   }
 }
