@@ -88,7 +88,6 @@
     ecommerce: "work",
     corporate: "work",
     hospitality: "work",
-    "real-estate": "work",
     agency: "work",
     "personal-brand": "work",
     tech: "work",
@@ -182,32 +181,158 @@
 })();
 
 /* ==========================================================================
-   Real Estate — filters and detail toggles
+   Book a Call — smooth scroll to booking section
    ========================================================================== */
 
 (() => {
-  const filterBtns = document.querySelectorAll(".property-filters__btn");
-  const cards = document.querySelectorAll(".property-card");
+  const bookingSection = document.getElementById("booking");
+  if (!bookingSection) return;
 
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterBtns.forEach((b) => b.classList.remove("is-active"));
-      btn.classList.add("is-active");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      const filter = btn.dataset.filter;
-      cards.forEach((card) => {
-        const match = filter === "all" || card.dataset.category === filter;
-        card.classList.toggle("is-hidden", !match);
+  document.querySelectorAll('a[href="#booking"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      bookingSection.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start",
       });
     });
   });
+})();
 
-  document.querySelectorAll(".property-card__toggle").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const card = btn.closest(".property-card");
-      const isOpen = card.classList.toggle("is-open");
-      btn.setAttribute("aria-expanded", String(isOpen));
-      btn.textContent = isOpen ? "Hide Details" : "View Details";
+/* ==========================================================================
+   Booking form
+   ========================================================================== */
+
+(() => {
+  const form = document.getElementById("bookingForm");
+  if (!form) return;
+
+  const fieldset = document.getElementById("bookingFieldset");
+  const dateInput = document.getElementById("bookingDate");
+  const slotsWrap = document.getElementById("bookingSlots");
+  const nameInput = document.getElementById("bookingName");
+  const emailInput = document.getElementById("bookingEmail");
+  const messageInput = document.getElementById("bookingMessage");
+  const submitBtn = document.getElementById("bookingSubmit");
+  const submitLabel = submitBtn.querySelector(".cta__label");
+  const statusEl = document.getElementById("bookingStatus");
+
+  const BOOKING_WINDOW_DAYS = 30;
+  let selectedSlot = null;
+
+  const toISODate = (date) => {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  };
+
+  const today = new Date();
+  const maxDate = new Date();
+  maxDate.setDate(today.getDate() + BOOKING_WINDOW_DAYS);
+  dateInput.min = toISODate(today);
+  dateInput.max = toISODate(maxDate);
+
+  const setStatus = (message, kind) => {
+    statusEl.textContent = message;
+    statusEl.className = "booking__status";
+    if (kind) statusEl.classList.add(`is-${kind}`);
+  };
+
+  const renderSlots = (slots) => {
+    selectedSlot = null;
+    slotsWrap.innerHTML = "";
+
+    if (!slots.length) {
+      slotsWrap.innerHTML = '<p class="booking__slots-hint">No times left on this date — try another day.</p>';
+      return;
+    }
+
+    slots.forEach((time) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "booking__slot";
+      btn.textContent = time;
+      btn.addEventListener("click", () => {
+        slotsWrap.querySelectorAll(".booking__slot").forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        selectedSlot = time;
+      });
+      slotsWrap.appendChild(btn);
     });
+  };
+
+  const loadAvailability = async (date) => {
+    slotsWrap.innerHTML = '<p class="booking__slots-hint">Loading times…</p>';
+    selectedSlot = null;
+
+    try {
+      const res = await fetch(`/api/availability?date=${encodeURIComponent(date)}`);
+      if (!res.ok) throw new Error("request_failed");
+      const data = await res.json();
+      renderSlots(Array.isArray(data.slots) ? data.slots : []);
+    } catch (err) {
+      slotsWrap.innerHTML = '<p class="booking__slots-hint">Could not load times. Please try again.</p>';
+    }
+  };
+
+  dateInput.addEventListener("change", () => {
+    setStatus("");
+    if (dateInput.value) loadAvailability(dateInput.value);
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    setStatus("");
+
+    if (!dateInput.value || !selectedSlot) {
+      setStatus("Please choose a date and a time.", "error");
+      return;
+    }
+
+    const payload = {
+      date: dateInput.value,
+      time: selectedSlot,
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      message: messageInput.value.trim(),
+    };
+
+    fieldset.disabled = true;
+    submitLabel.textContent = "Booking…";
+
+    try {
+      const res = await fetch("/api/book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        if (data.error === "slot_taken") {
+          setStatus("That time was just booked by someone else — pick another.", "error");
+          loadAvailability(payload.date);
+        } else {
+          setStatus("Something went wrong. Please try again.", "error");
+        }
+        fieldset.disabled = false;
+        submitLabel.textContent = "Confirm Booking";
+        return;
+      }
+
+      setStatus(
+        `You're booked for ${payload.date} at ${payload.time} (Europe/Stockholm). A confirmation has been sent to ${payload.email}.`,
+        "success"
+      );
+      submitLabel.textContent = "Booked ✓";
+    } catch (err) {
+      setStatus("Something went wrong. Please try again.", "error");
+      fieldset.disabled = false;
+      submitLabel.textContent = "Confirm Booking";
+    }
   });
 })();
