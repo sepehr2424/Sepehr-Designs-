@@ -1,0 +1,21 @@
+# Block direct access to the config file. PHP already prevents its contents
+# from being served as text, but this makes it explicit.
+<Files "config.php">
+    Require all denied
+</Files>
+
+# The shared bootstrap is an include, never a page.
+<Files "_bootstrap.php">
+    Require all denied
+</Files>
+
+# Keep the admin area out of search results.
+<IfModule mod_headers.c>
+    <FilesMatch "^(index|actions)\.php$">
+        Header set X-Robots-Tag "noindex, nofollow"
+    </FilesMatch>
+    Header always set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# Serve index.html as the homepage.
+DirectoryIndex index.html index.php

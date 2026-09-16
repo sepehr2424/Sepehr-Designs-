@@ -1,0 +1,3 @@
+# Contains the database password, Resend API key and admin setup token.
+# The real file is delivered with the deployment zip, never committed.
+config.php

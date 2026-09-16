@@ -269,7 +269,7 @@
     selectedSlot = null;
 
     try {
-      const res = await fetch(`/api/availability?date=${encodeURIComponent(date)}`);
+      const res = await fetch(`api/availability.php?date=${encodeURIComponent(date)}`);
       if (!res.ok) throw new Error("request_failed");
       const data = await res.json();
       renderSlots(Array.isArray(data.slots) ? data.slots : []);
@@ -304,7 +304,7 @@
     submitLabel.textContent = "Booking…";
 
     try {
-      const res = await fetch("/api/book", {
+      const res = await fetch("api/book.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -325,7 +325,7 @@
       }
 
       setStatus(
-        `You're booked for ${payload.date} at ${payload.time} (Europe/Stockholm). A confirmation has been sent to ${payload.email}.`,
+        `You're booked for ${payload.date} at ${payload.time} (Europe/Stockholm). I'll be in touch at ${payload.email} to confirm the details.`,
         "success"
       );
       submitLabel.textContent = "Booked ✓";
