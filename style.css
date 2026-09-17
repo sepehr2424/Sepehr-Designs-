@@ -1774,10 +1774,33 @@ body {
   padding: 20px 0;
 }
 
+.footer__bottom-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 20px;
+}
+
 .footer__bottom p {
   margin: 0;
   font-size: 12px;
   color: var(--ink-faint);
+}
+
+.footer__admin {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--ink-faint);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 200ms var(--ease), border-color 200ms var(--ease);
+}
+
+.footer__admin:hover,
+.footer__admin:focus-visible {
+  color: var(--ink-dim);
+  border-color: var(--line);
 }
 
 /* ==========================================================================
@@ -1898,7 +1921,8 @@ body {
   }
 
   .nav__link,
-  .footer__links a {
+  .footer__links a,
+  .footer__admin {
     color: var(--ink);
   }
 
