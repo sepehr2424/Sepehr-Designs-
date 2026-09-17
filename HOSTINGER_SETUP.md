@@ -57,6 +57,28 @@ setup-länken igen.
 
 ---
 
+## 3b. Slipp klistra in länken varje gång
+
+Nu när lösenordet är satt behöver du bara komma ihåg `/admin/` — men enklast
+är att lägga en genväg på hemskärmen:
+
+1. Öppna `https://din-sajt.se/admin/` i mobilens webbläsare och logga in.
+2. Öppna webbläsarmenyn (⋮ i Chrome, dela-ikonen i Safari) → **"Lägg till på
+   startskärmen"** / **"Add to Home Screen"**.
+3. Du får en egen app-ikon med SD-loggan — ett tryck tar dig rakt in i
+   bokningspanelen.
+
+Inloggningen håller sig nu i **30 dagar** istället för att glömmas bort så
+fort webbläsaren stängs, så oftast landar du direkt i panelen utan att
+behöva skriva lösenordet igen. Tryck **Sign out** i panelen om du vill
+logga ut manuellt (t.ex. på en delad dator).
+
+Sajten har också fått en egen logga (ett "SD"-monogram) som favicon, så du
+slipper se Hostingers standardikon i webbläsarfliken och bland dina
+bokmärken.
+
+---
+
 ## 4. Slå på mejlnotiser (valfritt, men rekommenderat)
 
 Bokningar fungerar direkt — men du får inget mejl förrän du gör det här.

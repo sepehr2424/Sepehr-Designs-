@@ -16,8 +16,16 @@ require_once __DIR__ . '/../api/_bootstrap.php';
 $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
     || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
 
+// Sign-in is kept for 30 days (instead of ending when the browser closes) so
+// a home-screen shortcut opens straight into the dashboard instead of asking
+// for the password every time. session.gc_maxlifetime is raised to match,
+// since the cookie surviving is pointless if the server deletes the session
+// data first.
+const ADMIN_SESSION_LIFETIME = 60 * 60 * 24 * 30;
+ini_set('session.gc_maxlifetime', (string) ADMIN_SESSION_LIFETIME);
+
 session_set_cookie_params([
-    'lifetime' => 0,
+    'lifetime' => ADMIN_SESSION_LIFETIME,
     'path'     => '/',
     'httponly' => true,
     'secure'   => $https,
@@ -267,6 +275,11 @@ function render_booking(array $b, string $token): void
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Bookings — Admin</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050506">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="admin.css">
 </head>
