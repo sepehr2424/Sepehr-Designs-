@@ -935,6 +935,310 @@ body {
 }
 
 /* ==========================================================================
+   E-Commerce — site preview demo cards
+   Each card is a tiny two-screen "website" that scrolls from its hero into
+   a second section on hover (desktop) or once on scroll-into-view (touch),
+   plus a subtle cursor-driven tilt (applied inline via script.js).
+   ========================================================================== */
+
+.product-card--demo {
+  cursor: default;
+}
+
+.site-preview {
+  container-type: inline-size;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #0c0c0e;
+}
+
+.site-preview__badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  background: rgba(245, 245, 247, 0.92);
+  color: #0a0a0b;
+}
+
+.site-preview__viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.site-preview__page {
+  height: 200%;
+  transform: translateY(0);
+  transition: transform 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-preview:hover .site-preview__page {
+    transform: translateY(-50%);
+  }
+}
+
+.site-preview.is-revealed .site-preview__page {
+  transform: translateY(-50%);
+}
+
+.mock {
+  position: relative;
+  height: 50%;
+  padding: 9cqw 8cqw;
+  display: flex;
+  flex-direction: column;
+}
+
+.mock__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mock__brand {
+  font-size: 4.2cqw;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.mock__brand--serif {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.mock__brand--mono {
+  letter-spacing: 0.14em;
+}
+
+.mock__navlinks {
+  display: flex;
+  gap: 2.2cqw;
+}
+
+.mock__navlinks span {
+  width: 5.5cqw;
+  height: 1.6px;
+  background: currentColor;
+  opacity: 0.4;
+}
+
+.mock__hero {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1cqw;
+  align-items: flex-start;
+}
+
+.mock__eyebrow {
+  margin: 0;
+  font-size: 2.6cqw;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.mock__headline {
+  margin: 0;
+  font-size: 6.4cqw;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  max-width: 20ch;
+}
+
+.mock__headline--serif {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.mock__hint {
+  font-size: 2.6cqw;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  opacity: 0.7;
+}
+
+.mock__section-label {
+  margin: 0 0 4cqw;
+  font-size: 2.6cqw;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+/* ---- Concept 1: AUR — footwear ---- */
+
+.mock--footwear,
+.mock--footwear-alt {
+  background: linear-gradient(160deg, #e8ddce, #c9b699 70%);
+  color: #211a12;
+  overflow: hidden;
+}
+
+.mock--footwear-alt {
+  background: #dccbb0;
+}
+
+.mock__shoe {
+  position: absolute;
+  right: -6cqw;
+  bottom: -4cqw;
+  width: 58cqw;
+  height: 58cqw;
+  background: linear-gradient(135deg, rgba(33, 26, 18, 0.9), rgba(33, 26, 18, 0.5));
+  clip-path: polygon(20% 100%, 0% 55%, 45% 20%, 100% 40%, 80% 100%);
+}
+
+.mock__tiles {
+  display: flex;
+  gap: 3cqw;
+}
+
+.mock__tile {
+  flex: 1;
+  aspect-ratio: 1;
+  border-radius: 3cqw;
+  background: rgba(33, 26, 18, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3cqw;
+  font-size: 2.4cqw;
+}
+
+.mock__tile span {
+  display: block;
+  font-weight: 600;
+}
+
+.mock__tile em {
+  font-style: normal;
+  opacity: 0.6;
+}
+
+/* ---- Concept 2: Nova & Co. — furniture ---- */
+
+.mock--furniture,
+.mock--furniture-alt {
+  background: linear-gradient(180deg, #f4ede3, #e7dcca);
+  color: #2c241a;
+  overflow: hidden;
+}
+
+.mock--furniture-alt {
+  background: #ece2d2;
+}
+
+.mock__blob {
+  position: absolute;
+  right: -8cqw;
+  top: 10%;
+  width: 46cqw;
+  height: 46cqw;
+  background: radial-gradient(circle at 35% 30%, #d99a72, #b8674a 75%);
+  border-radius: 62% 38% 55% 45% / 48% 45% 55% 52%;
+  opacity: 0.9;
+}
+
+.mock__strip {
+  display: flex;
+  gap: 3cqw;
+  align-items: flex-end;
+  flex: 1;
+}
+
+.mock__object {
+  flex: 1;
+  border-radius: 2.5cqw;
+  background: rgba(44, 36, 26, 0.1);
+}
+
+.mock__object--lamp {
+  height: 60%;
+  border-radius: 50% 50% 6% 6%;
+}
+
+.mock__object--chair {
+  height: 78%;
+}
+
+.mock__object--table {
+  height: 42%;
+}
+
+/* ---- Concept 3: PULSE — audio tech ---- */
+
+.mock--audio,
+.mock--audio-alt {
+  background: #0b0d10;
+  color: #eef2f4;
+  overflow: hidden;
+}
+
+.mock--audio-alt {
+  background: #0e1013;
+}
+
+.mock__orb {
+  position: absolute;
+  right: 4cqw;
+  bottom: 4cqw;
+  width: 44cqw;
+  height: 44cqw;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(120, 255, 220, 0.9), rgba(30, 200, 170, 0.15) 60%, transparent 75%);
+}
+
+.mock__stats {
+  display: flex;
+  gap: 4cqw;
+  margin-top: auto;
+}
+
+.mock__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6cqw;
+}
+
+.mock__stat strong {
+  font-size: 5.2cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.mock__stat span {
+  font-size: 2.2cqw;
+  opacity: 0.55;
+  letter-spacing: 0.04em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-preview__page {
+    transition: none;
+  }
+
+  .site-preview:hover .site-preview__page,
+  .site-preview.is-revealed .site-preview__page {
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
    02 — Corporate
    ========================================================================== */
 
