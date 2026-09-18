@@ -181,48 +181,53 @@
 })();
 
 /* ==========================================================================
-   E-Commerce — site preview demo cards (scroll reveal + cursor tilt)
+   Concept previews — cursor tilt (site preview cards + mockup panels),
+   with a scroll-triggered reveal fallback on touch devices.
    ========================================================================== */
 
 (() => {
   const previews = document.querySelectorAll("[data-site-preview]");
-  if (!previews.length) return;
+  const tiltOnly = document.querySelectorAll("[data-tilt]");
+  if (!previews.length && !tiltOnly.length) return;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) return;
 
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
+  const attachTilt = (el) => {
+    let raf = null;
+
+    const onMove = (event) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = null;
+        const rect = el.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width - 0.5;
+        const py = (event.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform =
+          `perspective(900px) rotateX(${(-py * 6).toFixed(2)}deg) ` +
+          `rotateY(${(px * 6).toFixed(2)}deg) scale(1.015)`;
+      });
+    };
+
+    const onLeave = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = null;
+      el.style.transform = "";
+    };
+
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("pointerleave", onLeave);
+  };
+
   if (canHover) {
     previews.forEach((preview) => {
       const card = preview.closest(".product-card");
-      if (!card) return;
-
-      let raf = null;
-
-      const onMove = (event) => {
-        if (raf) return;
-        raf = requestAnimationFrame(() => {
-          raf = null;
-          const rect = card.getBoundingClientRect();
-          const px = (event.clientX - rect.left) / rect.width - 0.5;
-          const py = (event.clientY - rect.top) / rect.height - 0.5;
-          card.style.transform =
-            `perspective(900px) rotateX(${(-py * 6).toFixed(2)}deg) ` +
-            `rotateY(${(px * 6).toFixed(2)}deg) scale(1.015)`;
-        });
-      };
-
-      const onLeave = () => {
-        if (raf) cancelAnimationFrame(raf);
-        raf = null;
-        card.style.transform = "";
-      };
-
-      card.addEventListener("pointermove", onMove);
-      card.addEventListener("pointerleave", onLeave);
+      if (card) attachTilt(card);
     });
-  } else if ("IntersectionObserver" in window) {
+    tiltOnly.forEach(attachTilt);
+  } else if (previews.length && "IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -237,6 +242,59 @@
 
     previews.forEach((preview) => observer.observe(preview));
   }
+})();
+
+/* ==========================================================================
+   Tech/SaaS — stat count-up on scroll into view
+   ========================================================================== */
+
+(() => {
+  const stats = document.querySelectorAll("[data-count-to]");
+  if (!stats.length) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const format = (el, value) => {
+    const decimals = Number(el.dataset.decimals || 0);
+    const suffix = el.dataset.suffix || "";
+    return `${value.toFixed(decimals)}${suffix}`;
+  };
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    stats.forEach((el) => {
+      el.textContent = format(el, parseFloat(el.dataset.countTo));
+    });
+    return;
+  }
+
+  const animate = (el) => {
+    const target = parseFloat(el.dataset.countTo);
+    const duration = 1100;
+    const start = performance.now();
+
+    const step = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = format(el, target * eased);
+      if (t < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animate(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  stats.forEach((stat) => observer.observe(stat));
 })();
 
 /* ==========================================================================
