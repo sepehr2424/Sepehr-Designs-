@@ -208,6 +208,8 @@
         el.style.transform =
           `perspective(900px) rotateX(${(-py * 6).toFixed(2)}deg) ` +
           `rotateY(${(px * 6).toFixed(2)}deg) scale(1.015)`;
+        el.style.setProperty("--px", px.toFixed(3));
+        el.style.setProperty("--py", py.toFixed(3));
       });
     };
 
@@ -215,6 +217,8 @@
       if (raf) cancelAnimationFrame(raf);
       raf = null;
       el.style.transform = "";
+      el.style.removeProperty("--px");
+      el.style.removeProperty("--py");
     };
 
     el.addEventListener("pointermove", onMove);

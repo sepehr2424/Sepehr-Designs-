@@ -1998,6 +1998,143 @@ body {
 }
 
 /* ==========================================================================
+   07 — Reference Showcase
+   ========================================================================== */
+
+.showcase--reference {
+  background: var(--bg);
+}
+
+.product-grid--reference {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 860px;
+}
+
+/* ---- Reference 1: Lyxbolaget — scroll-driven hero carousel ---- */
+
+.mock--lyx,
+.mock--lyx-alt {
+  position: relative;
+  background: linear-gradient(165deg, #241a0c, #120d06 75%);
+  color: #f2efe9;
+  overflow: hidden;
+}
+
+.mock--lyx-alt {
+  background: #17120a;
+}
+
+.mock--lyx .mock__nav {
+  position: relative;
+  z-index: 2;
+}
+
+.mock--lyx .mock__brand {
+  font-size: 3.4cqw;
+  letter-spacing: 0.1em;
+}
+
+.mock--lyx .mock__eyebrow {
+  opacity: 0.55;
+}
+
+.mock__word {
+  position: absolute;
+  top: 16cqw;
+  left: 8cqw;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 15cqw;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  color: rgba(242, 239, 233, 0.14);
+  white-space: nowrap;
+  transform: translateX(calc(var(--px, 0) * -18px));
+  transition: transform 300ms var(--ease);
+}
+
+.mock__carshape {
+  position: absolute;
+  right: -4cqw;
+  bottom: 8cqw;
+  width: 56cqw;
+  height: 26cqw;
+  background: linear-gradient(100deg, rgba(200, 168, 107, 0.4), rgba(200, 168, 107, 0.05));
+  clip-path: polygon(0% 70%, 8% 40%, 30% 22%, 65% 18%, 100% 45%, 96% 85%, 60% 100%, 15% 96%);
+  transform: translate(calc(var(--px, 0) * 10px), calc(var(--py, 0) * 8px));
+  transition: transform 300ms var(--ease);
+}
+
+.mock__carinfo {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+}
+
+.mock__model {
+  margin: 0.6cqw 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 6.8cqw;
+  letter-spacing: -0.01em;
+}
+
+.mock__dots {
+  position: absolute;
+  right: 6cqw;
+  bottom: 8cqw;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4cqw;
+}
+
+.mock__dot {
+  width: 1.4cqw;
+  height: 1.4cqw;
+  border-radius: 50%;
+  background: rgba(242, 239, 233, 0.3);
+}
+
+.mock__dot--active {
+  background: #c8a86b;
+}
+
+/* ---- Reference 2: United — editorial reveal ---- */
+
+.mock--united,
+.mock--united-alt {
+  background: linear-gradient(175deg, #f5f1ec, #ece5da 85%);
+  color: #17140f;
+  overflow: hidden;
+}
+
+.mock--united-alt {
+  background: #efe8dc;
+}
+
+.mock__logo {
+  height: 3.6cqw;
+  width: auto;
+  margin-right: auto;
+}
+
+.mock--united .mock__headline em {
+  font-style: italic;
+  color: #5f6a52;
+}
+
+.mock--united-alt .mock__services li {
+  border-color: rgba(23, 20, 15, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mock__word,
+  .mock__carshape {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
    Contact
    ========================================================================== */
 
