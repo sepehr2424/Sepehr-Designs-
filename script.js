@@ -245,6 +245,75 @@
 })();
 
 /* ==========================================================================
+   Design Showcase — click a concept card to open a full-size preview
+   ========================================================================== */
+
+(() => {
+  const modal = document.getElementById("previewModal");
+  const stage = modal && modal.querySelector("[data-preview-stage]");
+  const triggers = document.querySelectorAll("[data-preview-trigger]");
+  if (!modal || !stage || !triggers.length) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let lastTrigger = null;
+
+  const open = (card) => {
+    const page = card.querySelector(".site-preview__page");
+    if (!page) return;
+
+    stage.innerHTML = "";
+    page.querySelectorAll(".mock").forEach((mock) => {
+      stage.appendChild(mock.cloneNode(true));
+    });
+
+    lastTrigger = card;
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+
+    requestAnimationFrame(() => {
+      modal.classList.add("is-open");
+    });
+
+    modal.querySelector(".preview-modal__close").focus();
+  };
+
+  const close = () => {
+    modal.classList.remove("is-open");
+    document.body.style.overflow = "";
+
+    const finish = () => {
+      modal.hidden = true;
+      stage.innerHTML = "";
+      if (lastTrigger) lastTrigger.focus();
+    };
+
+    if (reduceMotion) {
+      finish();
+    } else {
+      modal.querySelector(".preview-modal__panel").addEventListener("transitionend", finish, { once: true });
+    }
+  };
+
+  triggers.forEach((card) => {
+    card.addEventListener("click", () => open(card));
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        open(card);
+      }
+    });
+  });
+
+  modal.querySelectorAll("[data-preview-close]").forEach((el) => {
+    el.addEventListener("click", close);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hidden) close();
+  });
+})();
+
+/* ==========================================================================
    Tech/SaaS — stat count-up on scroll into view
    ========================================================================== */
 

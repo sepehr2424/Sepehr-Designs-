@@ -942,7 +942,12 @@ body {
    ========================================================================== */
 
 .product-card--demo {
-  cursor: default;
+  cursor: pointer;
+}
+
+.product-card--demo:focus-visible {
+  outline: 2px solid rgba(180, 190, 255, 0.8);
+  outline-offset: 3px;
 }
 
 .site-preview {
@@ -1080,151 +1085,265 @@ body {
   opacity: 0.55;
 }
 
-/* ---- Concept 1: AUR — footwear ---- */
+/* ---- Shared row list (menu / services) ---- */
 
-.mock--footwear,
-.mock--footwear-alt {
-  background: linear-gradient(160deg, #e8ddce, #c9b699 70%);
-  color: #211a12;
-  overflow: hidden;
-}
-
-.mock--footwear-alt {
-  background: #dccbb0;
-}
-
-.mock__shoe {
-  position: absolute;
-  right: -6cqw;
-  bottom: -4cqw;
-  width: 58cqw;
-  height: 58cqw;
-  background: linear-gradient(135deg, rgba(33, 26, 18, 0.9), rgba(33, 26, 18, 0.5));
-  clip-path: polygon(20% 100%, 0% 55%, 45% 20%, 100% 40%, 80% 100%);
-}
-
-.mock__tiles {
-  display: flex;
-  gap: 3cqw;
-}
-
-.mock__tile {
-  flex: 1;
-  aspect-ratio: 1;
-  border-radius: 3cqw;
-  background: rgba(33, 26, 18, 0.08);
+.mock__menu,
+.mock__services {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 3cqw;
-  font-size: 2.4cqw;
+  gap: 2.4cqw;
 }
 
-.mock__tile span {
-  display: block;
+.mock__menu li {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5cqw;
+  font-size: 3cqw;
+}
+
+.mock__menu li i {
+  flex: 1;
+  border-bottom: 1px dotted currentColor;
+  opacity: 0.35;
+  transform: translateY(-2px);
+}
+
+.mock__menu li em {
+  font-style: normal;
+  opacity: 0.6;
+  font-size: 2.6cqw;
+}
+
+.mock__services li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2cqw;
+  border-bottom: 1px solid currentColor;
+  border-color: rgba(0, 0, 0, 0.1);
+  font-size: 3cqw;
   font-weight: 600;
 }
 
-.mock__tile em {
+.mock__services li em {
   font-style: normal;
-  opacity: 0.6;
+  opacity: 0.55;
+  font-weight: 500;
 }
 
-/* ---- Concept 2: Nova & Co. — furniture ---- */
+/* ---- Concept 1: Ember & Salt — restaurant ---- */
 
-.mock--furniture,
-.mock--furniture-alt {
-  background: linear-gradient(180deg, #f4ede3, #e7dcca);
-  color: #2c241a;
+.mock--restaurant,
+.mock--restaurant-alt {
+  background: linear-gradient(165deg, #241a14, #120d0a 75%);
+  color: #f3e9df;
   overflow: hidden;
 }
 
-.mock--furniture-alt {
-  background: #ece2d2;
+.mock--restaurant-alt {
+  background: #180f0b;
 }
 
-.mock__blob {
+.mock__ember {
   position: absolute;
-  right: -8cqw;
-  top: 10%;
-  width: 46cqw;
-  height: 46cqw;
-  background: radial-gradient(circle at 35% 30%, #d99a72, #b8674a 75%);
-  border-radius: 62% 38% 55% 45% / 48% 45% 55% 52%;
-  opacity: 0.9;
+  right: -10cqw;
+  bottom: -10cqw;
+  width: 60cqw;
+  height: 60cqw;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(255, 150, 70, 0.85), rgba(200, 70, 30, 0.25) 55%, transparent 75%);
 }
 
-.mock__strip {
+/* ---- Concept 2: Kessler & Vance — construction ---- */
+
+.mock--construction,
+.mock--construction-alt {
+  background: linear-gradient(170deg, #23262b, #14161a 75%);
+  color: #eef0f2;
+  overflow: hidden;
+}
+
+.mock--construction .mock__brand {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mock--construction-alt {
+  background: #1a1c20;
+}
+
+.mock__skyline {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 2.5cqw;
+  height: 55%;
+  padding: 0 6cqw;
+}
+
+.mock__skyline i {
+  width: 9cqw;
+  background: linear-gradient(180deg, rgba(140, 160, 255, 0.5), rgba(140, 160, 255, 0.12));
+}
+
+.mock__skyline i:nth-child(1) { height: 55%; }
+.mock__skyline i:nth-child(2) { height: 85%; }
+.mock__skyline i:nth-child(3) { height: 68%; }
+.mock__skyline i:nth-child(4) { height: 100%; }
+
+.mock__projects {
   display: flex;
   gap: 3cqw;
-  align-items: flex-end;
   flex: 1;
 }
 
-.mock__object {
+.mock__project {
   flex: 1;
   border-radius: 2.5cqw;
-  background: rgba(44, 36, 26, 0.1);
+  background: rgba(245, 245, 247, 0.06);
+  border: 1px solid rgba(245, 245, 247, 0.1);
+  display: flex;
+  align-items: flex-end;
+  padding: 3cqw;
+  font-size: 2.4cqw;
+  font-weight: 600;
+  color: rgba(238, 240, 242, 0.8);
 }
 
-.mock__object--lamp {
-  height: 60%;
-  border-radius: 50% 50% 6% 6%;
-}
+/* ---- Concept 3: Lumière Studio — hair salon ---- */
 
-.mock__object--chair {
-  height: 78%;
-}
-
-.mock__object--table {
-  height: 42%;
-}
-
-/* ---- Concept 3: PULSE — audio tech ---- */
-
-.mock--audio,
-.mock--audio-alt {
-  background: #0b0d10;
-  color: #eef2f4;
+.mock--salon,
+.mock--salon-alt {
+  background: linear-gradient(160deg, #f6e9ec, #ecd6dc 75%);
+  color: #2b1f22;
   overflow: hidden;
 }
 
-.mock--audio-alt {
-  background: #0e1013;
+.mock--salon-alt {
+  background: #f2e0e4;
 }
 
-.mock__orb {
+.mock--salon-alt .mock__services li {
+  border-color: rgba(43, 31, 34, 0.12);
+}
+
+.mock__ribbon {
   position: absolute;
-  right: 4cqw;
-  bottom: 4cqw;
-  width: 44cqw;
-  height: 44cqw;
+  right: -14cqw;
+  top: -10%;
+  width: 70cqw;
+  height: 130%;
+  background: linear-gradient(155deg, rgba(200, 110, 140, 0.5), rgba(200, 110, 140, 0.05) 60%);
+  border-radius: 45% 55% 60% 40% / 55% 45% 55% 45%;
+  transform: rotate(12deg);
+}
+
+/* ---- Full-size concept preview (opens on card click) ---- */
+
+.preview-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.preview-modal[hidden] {
+  display: none;
+}
+
+.preview-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 5, 6, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.preview-modal__panel {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  max-height: 88vh;
+  overflow-y: auto;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  box-shadow: 0 60px 120px -40px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transform: scale(0.96) translateY(8px);
+  transition: opacity 260ms var(--ease), transform 260ms var(--ease);
+}
+
+.preview-modal.is-open .preview-modal__panel {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.preview-modal__chrome {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.preview-modal__chrome span {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, rgba(120, 255, 220, 0.9), rgba(30, 200, 170, 0.15) 60%, transparent 75%);
+  background: var(--line);
 }
 
-.mock__stats {
-  display: flex;
-  gap: 4cqw;
-  margin-top: auto;
+.preview-modal__close {
+  margin-left: auto;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 150ms var(--ease), color 150ms var(--ease);
 }
 
-.mock__stat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6cqw;
+.preview-modal__close:hover {
+  background: var(--bg-soft);
+  color: var(--ink);
 }
 
-.mock__stat strong {
-  font-size: 5.2cqw;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
+.preview-modal__stage {
+  container-type: inline-size;
 }
 
-.mock__stat span {
-  font-size: 2.2cqw;
-  opacity: 0.55;
-  letter-spacing: 0.04em;
+.preview-modal__stage .mock {
+  height: auto;
+  min-height: 260px;
+  padding: 9cqw 8cqw;
+}
+
+@media (max-width: 640px) {
+  .preview-modal__panel {
+    max-width: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1235,6 +1354,10 @@ body {
   .site-preview:hover .site-preview__page,
   .site-preview.is-revealed .site-preview__page {
     transform: translateY(0);
+  }
+
+  .preview-modal__panel {
+    transition: none;
   }
 }
 
